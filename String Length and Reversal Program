@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <string.h>
+
+/* ************************************************************************************ */
+/*                                                                                      */
+/*   title: ICE_17.c                                                                    */
+/*   programmer: Lukasz Janik                                                           */
+/*   date: 11/15/2022                                                                   */
+/*                                                                                      */
+/*   purpose:                                                                           */
+/*             this is ice17!                                                           */
+/*                                                                                      */
+/*   inputs:  stored data                                                               */
+/*   outputs: none (console display)                                                    */
+/*                                                                                      */
+/*   notes: none         																*/			
+/*																						*/
+/* Honor Code:																			*/
+/* I have neither given or received, nor have I tolerated others use of                 */
+/* unauthorized aid                                                                     */
+/* ************************************************************************************ */
+
+int string_len(char instring[50]);
+int back_disp(char instring[50]);          
+
+/*   main()                                                                             */
+int main() {
+
+    char my_string[50]= {"Uh I don't know what to put here"};       /* name data    */
+    int  ret_val=0;  	/* return value */
+	char rev_string[50];
+	printf("The original string: \n");
+    printf("	%s\n", my_string);
+
+	ret_val=string_len(my_string);
+
+    printf("\nThe length of the string is: \n");
+	printf("	%d\n\n", ret_val);
+
+    back_disp(my_string);
+	
+
+    return 0;
+}
+
+/* ************************************************************************************ */
+/*                                                                                      */
+/*   function name: string_len(char instring[50])                                       */
+/*                                                                                      */
+/*   date: 10-26-2022                                                                   */
+/*                                                                                      */
+/*   arguments: instring (char) -     null terminated string to be evaluated for        */
+/*                                    length (note max)                                 */
+/*                                                                                      */
+/*   purpose:                                                                           */
+/*   this function calculates and returns the length of a null terminated string.       */
+/*                                                                                      */
+/*   function (return) type: int                                                        */
+/*                                                                                      */
+/*   return values: string length                                                       */
+/*                                                                                      */
+/* ************************************************************************************ */
+
+int string_len(char instring[50]) {
+    int i;                                               /* counter - scoped for use    */
+    for(i=0; instring[i]!=0; i++); return i;             /* count to null and return    */
+}
+
+int back_disp(char instring[50]){
+	int i;
+		printf("Reversed String: \n	");
+	for(i=0; instring[i]!=0; i++); 
+	for(int j=i-1; instring[j]!=0; j--){
+		printf("%c",instring[j]);
+	}
+		return 0;
+		
+		
+	/*
+char i, j;
+int temp;
+int  ret_val=0;  	 
+ret_val=string_len(instring);
+i=0;
+j=ret_val;
+
+while (i==0){  
+// use temp variable to store the characters of instring  
+if (i<j){
+	temp = instring[j];  
+	instring[j] = instring[i];  
+	instring[i] = temp;  
+	 i++;
+	 j--;
+}
+}  
+printf ("The reversed of the string: \n 	%s", instring);  
+return 0;  */
+
+
+}  
