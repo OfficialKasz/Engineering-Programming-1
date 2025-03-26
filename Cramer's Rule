@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <math.h>
+
+/* ******************************************************** 
+		Title: PP05.c										
+		Programmer: Lukasz Janik							
+		Date: Oct 6 2022									
+		Purpose: Implement Cramer's Rule					
+	******************************************************* */
+
+/* Determinant's establishment and code*/
+
+double xDet(double a1,double a2,double b1,double b2,double c1,double c2);
+
+double yDet(double a1,double a2,double b1,double b2,double c1,double c2);
+
+float fail;
+
+double xDet (double a1, double a2, double b1, double b2, double c1, double c2) {
+	double x;
+	double numer;
+	double denom;
+	numer = ((c1)*(b2))-((c2)*(b1));
+	denom = ((a1)*(b2))-((a2)*(b1));
+	x = (numer)/(denom);
+	
+	return x;
+}
+
+double yDet (double a1, double a2, double b1, double b2, double c1, double c2) {
+	double y;
+	double numer;
+	double denom;
+	numer = ((a1)*(c2))-((a2)*(c1));
+	denom = ((a1)*(b2))-((a2)*(b1));
+	y = (numer)/(denom);
+
+	return y;
+}
+
+/* function */
+
+int main () {
+
+	/* set variables */
+	double a1;
+	double a2;
+	double b1;
+	double b2;
+	double c1;
+	double c2;
+	double firstSlope;
+	double secondSlope;
+	double firstIntercept;
+	double secondIntercept;
+	
+	/* request variables */
+	printf("Enter the 6 matrix numbers in the order a1, b1, c1, a2, b2, c2: ");
+	scanf("%lf %lf %lf %lf %lf %lf", &a1, &b1, &c1, &a2, &b2, &c2);
+	printf("\n");
+	
+	/* show matrixes to make sure they are correct */
+	printf("Matrix 1 is:\n\n| %lf   %lf |\n| %lf   %lf |\n\n\n", c1, b1, c2, b2);
+	printf("Matrix 2 is:\n\n| %lf   %lf |\n| %lf   %lf |\n\n\n", a1, b1, a2, b2);
+	printf("Matrix 3 is:\n\n| %lf   %lf |\n| %lf   %lf |\n\n\n", a1, c1, a2, c2);
+	printf("Matrix 4 is:\n\n| %lf   %lf |\n| %lf   %lf |\n\n\n", a1, b1, a2, b2);
+	
+	/* show equations to double make sure they are correct */
+	printf("Equation 1 is:\n\n      | %lf   %lf |\n      | %lf   %lf |\nx =   ------------------------\n      | %lf   %lf |\n      | %lf   %lf |\n\n", c1, b1, c2, b2, a1, b1, a2, b2);
+	printf("Equation 2 is:\n\n      | %lf   %lf |\n      | %lf   %lf |\ny =   ------------------------\n      | %lf   %lf |\n      | %lf   %lf |\n\n", a1, c1, a2, c2, a1, b1, a2, b2);
+	
+	/* Extra Credit */
+	firstSlope = (b1/a1);
+	secondSlope = (b2/a2);
+	firstIntercept = (c1/b1);
+	secondIntercept = (c2/b2);
+	
+	
+	if (firstSlope == secondSlope) {
+		if (firstIntercept == secondIntercept) {
+			printf("Cannot Compute. Infinite Results.");
+			return 0;
+		}
+		
+		else {
+			printf("Cannot Compute. No Results.");
+			return 0;
+		}
+	}
+
+	else {
+	/* return results for x and y */
+		printf("Solution:\n\n");
+		printf("x = %lf\n\n", xDet(a1, a2, b1, b2, c1, c2));
+		printf("y = %lf\n\n", yDet(a1, a2, b1, b2, c1, c2));
+		return 0;
+	}
+
+}
