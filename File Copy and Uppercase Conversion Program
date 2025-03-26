@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+/* ************************************************************************************ */
+/*                                                                                      */
+/*   title: ICE_18.c                                                                    */
+/*   programmer: Lukasz Janik                                                           */
+/*   date: 11/17/2022                                                                   */
+/*                                                                                      */
+/*   purpose:                                                                           */
+/*             this is ICE 18!                                                          */
+/*                                                                                      */
+/*   inputs:  text from an input file	                                                */
+/*   outputs: the text from file all characters are upper cased                         */
+/*                                                                                      */
+/*   notes: none         																*/			
+/*																						*/
+/* Honor Code:																			*/
+/* I have neither given or received, nor have I tolerated others use of                 */
+/* unauthorized aid                                                                     */
+/* ************************************************************************************ */
+
+int main() {
+   FILE *infile_ptr, *outfile_ptr;          /*     define file pointers */
+   char ch;
+ 
+
+   infile_ptr = fopen("input_ICE_18.txt", "r");    /*  open infile for reading */
+   outfile_ptr = fopen("output.txt", "w");  	   /* open outfile for writing */
+ 
+   while (1) {                              /*         loop until break */
+      ch = fgetc(infile_ptr);               /*      read file character */
+  
+      if (ch == EOF)                        /*              stop at EOF */
+         break;
+      else
+         putc(ch, outfile_ptr);             /*       or write to output */
+   }
+ 
+   printf("File copied Successfully!");     /*           report success */
+   
+   fscanf(infile_ptr,       
+      
+   
+   
+   
+   fclose(infile_ptr);                      /*              close files */
+   fclose(outfile_ptr);
+   
+   return 0;                                /*             exit cleanly */
+} 
