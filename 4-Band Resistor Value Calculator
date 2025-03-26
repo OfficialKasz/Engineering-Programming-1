@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <math.h>
+/*
+Lukasz Janik
+ECE 251 ICE 12
+*/
+/* Resistor Map*/
+int bandColor(char b1){
+	
+	if (b1=='B') return 0;
+	if (b1=='N') return 1;
+	if (b1=='R') return 2;
+	if (b1=='O') return 3;
+	if (b1=='Y') return 4;
+	if (b1=='G') return 5;
+	if (b1=='L') return 6;
+	if (b1=='V') return 7;
+	if (b1=='E') return 8;
+	if (b1=='W') return 9;
+	if (b1=='D') return 5;
+	if (b1=='S') return 10;
+}
+
+int main(){
+	
+	char band1[3], band2[3], band3[3], band4[3];
+	float num1, num2, num3, num4;
+	float resistVal;
+	
+	/* Asking for the Colors */
+	printf("\n Please Enter the First Band Color: ");
+	fflush( stdout );
+	scanf("%s", &band1);
+	printf("\n Please Enter the Second Band Color: ");
+	fflush( stdout );
+	scanf("%s", &band2);
+	printf("\n Please Enter the Third Band Color: ");
+	fflush( stdout );
+	scanf("%s", &band3);
+	printf("\n Please Enter the Fourth Band Color: ");
+	fflush( stdout );
+	scanf("%s", &band4);
+	printf("\n");
+	
+	/* Repeating what colors where told */
+	printf("The colors you said where: ");
+	printf("%c %c %c %c", band1[0], band2[0], band3[0], band4[0]);
+	printf("\n");
+	
+	/*Sends letters to get the value*/
+	num1 = bandColor(band1[0]);
+	num2 = bandColor(band2[0]);
+	num3 = bandColor(band3[0]);
+	num4 = bandColor(band4[0]);
+	
+	/*Prints out the numerical value of the band*/
+	printf("This is the equivalence: ");
+	printf(" %f %f %f %f ", num1, num2, num3, num4);
+	
+	resistVal = (((num1*10.0)+num2)*pow(10.0, num3));
+	printf("\n %f", resistVal);
+	printf(" ohms, %f %% tolerance\n", num4);
+	
+	return 0;
+}
+	
+	
