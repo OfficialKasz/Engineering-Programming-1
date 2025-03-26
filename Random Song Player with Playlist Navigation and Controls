@@ -1,0 +1,194 @@
+#include <stdio.h>
+#include <Windows.h>
+#include <Mmsystem.h>
+#include <time.h>
+#include <stdlib.h>
+
+#define MAXSONG 11
+
+/* ************************************************************************ */
+/*                                                                          */
+/* program:    PP_07.c                                                      */
+/*                                                                          */
+/* programmer: Lukasz Janik                                                 */
+/* date: 11/10/2022                                                         */
+/* description:                                                             */
+/*          this program plays a random song out of a list of four          */
+/*          excellent songs.  the music files must exist in the current     */
+/*          working directory.  the songs are full length                   */
+/*                                                                          */
+/* notes:                                                                   */
+/*          use the SND_ASYNC setting for main() to retain control          */
+/*                                                                          */
+/* compile using:                                                           */
+/*          gcc mus_she3.c -lwinmm                                          */
+/*                                                                          */
+/* ************************************************************************ */
+int playmusic(char songname[50]);          /* function for playing WAV file */
+int rand_gen(int last_num);                /* generates random number       */
+int song_name(int curr_song);
+
+int main() {
+	srand(time(NULL));   // Initialization, should only be called once.
+    char user_input[2] = " ";
+	int curr_song = 0;                           /* holds current song       */
+	int x=0;
+
+    char songwaves[11][50]= {"hlL(1).wav",      /* Hayloft - Mother Mother      */
+                             "ttL(1).wav",      /* Two 10s - Quinn XCII        */
+                             "atL(1).wav",      /* All to me - Giveon          */
+                             "tsL(1).wav",      /* Turn to Stone - ELO         */
+                             "soL(1).wav",      /* Stressed out - 21 Pilots    */
+                             "mdL(1).wav",      /* Ma Dir. - Sexion d'Assaut   */
+                             "sbL(1).wav",      /* Starlight Brigade - TWRP    */
+                             "ooL(1).wav",      /* oops! - Yung Gravy          */
+                             "daL(1).wav",      /* Dangote - Burna Boy         */
+                             "dyL(1).wav",      /* Don't You... - Simple Minds */
+                             "maL(1).wav" };    /* Machines - Crown the Empire */
+
+		
+	while(x<2){
+	// Menu that displays a song list and commands
+	printf("\n");
+		//Song List 
+	printf("***************************************************\n");
+	printf("***************************************************\n");
+	printf("Song List:  \n");
+	printf("	Song #1:  Hayloft - Mother Mother      \n");
+	printf("	Song #2:  Two 10s - Quinn XCII   	   \n");
+	printf("	Song #3:  All to me - Giveon  		   \n");
+	printf("	Song #4:  Turn to Stone - ELO          \n");
+	printf("	Song #5:  Stressed out - 21 Pilots     \n");
+	printf("	Song #6:  Ma Dir. - Sexion d'Assaut    \n");
+	printf("	Song #7:  Starlight Brigade - TWRP     \n");
+	printf("	Song #8:  oops! - Yung Gravy           \n");
+	printf("	Song #9:  Dangote - Burna Boy          \n");
+	printf("	Song #10: Don't You... - Simple Minds  \n");
+	printf("	Song #11: Machines - Crown the Empire  \n");
+	
+		//Commands in Music Player
+	printf("***************************************************\n");
+	printf("P = Play the current song \n");
+	printf("> = Fast foward to next song \n");
+	printf("< = Go back to the previous song \n");
+	printf("S = Play a random song  \n");
+	printf("X = Exit the music player \n");
+	
+	printf("***************************************************\n");
+	printf("***************************************************\n");
+	
+		//To get an input from the user
+	printf("\n Please enter a command: ");
+	scanf("%s", &user_input);
+		switch (user_input[0]){
+			//To play the current song 
+			case 'P':
+				printf("	You decided to play the current song\n");
+				curr_song=curr_song;
+				song_name(curr_song);
+				playmusic(songwaves[curr_song]);
+				break;
+				
+			//To play a random song
+			case 'S' :                          
+				printf("	You decided to play a random song\n");
+				 curr_song=rand_gen(curr_song);
+				 song_name(curr_song);
+                 playmusic(songwaves[curr_song]);       
+				 break;
+				 
+			//To fast foward to the next song
+			case '>':
+				printf("	You decided to fast foward to the next song\n");
+				curr_song=curr_song+1;
+				//if you are at the last song to take you to the first one
+				if (curr_song == 11){
+					curr_song = 0;
+				}
+				song_name(curr_song);
+				playmusic(songwaves[curr_song]);
+				break;
+				 
+			//To go back to the previous song
+			case '<':
+				printf("	You decided to go back to the previous song\n");
+				curr_song=curr_song-1;
+				//if you are at the last song to go back to the first one
+				if (curr_song == -1){
+					curr_song = 10;
+				}	
+				song_name(curr_song);
+				playmusic(songwaves[curr_song]);
+				break;
+				 
+			//To exit the music player
+			case 'X':
+				printf("	You decided to leave the music player\n");
+				x=2;
+				break;
+			
+			//For any invalid inputs
+			default:
+				printf("	Please enter a valid input\n");
+				break;
+		}			
+	}
+    return 0;
+}
+
+/* playmusic(char songname[50]) - plays specified song in current dir.      */
+int playmusic(char songname[50]) {           
+                                               
+  PlaySound(songname, NULL, SND_FILENAME | SND_ASYNC);
+
+  return 0;
+}
+
+/* rand_gen(int last_num) - returns rand num 0-MAXSONG but not last number  */
+int rand_gen(int last_num){
+
+    int new_num=last_num;
+    while(new_num==last_num) new_num=rand() % MAXSONG;
+    
+    return new_num;
+}
+
+//Function to tell you what is the name of the song being played
+int song_name(int curr_song){
+	printf("\n");
+	printf("Current Song: \n");
+	if (curr_song == 0){
+		printf("	Song #1:  Hayloft - Mother Mother      \n");
+	}
+	else if (curr_song == 1){
+		printf("	Song #2:  Two 10s - Quinn XCII   	   \n");
+	}
+	else if (curr_song == 2){
+		printf("	Song #3:  All to me - Giveon  		   \n");
+	}
+	else if (curr_song == 3){
+		printf("	Song #4:  Turn to Stone - ELO          \n");
+	}
+	else if (curr_song == 4){
+		printf("	Song #5:  Stressed out - 21 Pilots     \n");
+	}
+	else if (curr_song == 5){
+		printf("	Song #6:  Ma Dir. - Sexion d'Assaut    \n");
+	}
+	else if (curr_song == 6){
+		printf("	Song #7:  Starlight Brigade - TWRP     \n");
+	}
+	else if (curr_song == 7){
+		printf("	Song #8:  oops! - Yung Gravy           \n");
+	}
+	else if (curr_song == 8){
+		printf("	Song #9:  Dangote - Burna Boy          \n");
+	}
+	else if (curr_song == 9){
+		printf("	Song #10: Don't You... - Simple Minds  \n");
+	}
+	else if (curr_song == 10){
+		printf("	Song #11: Machines - Crown the Empire  \n");
+	}
+	return 0;
+}
