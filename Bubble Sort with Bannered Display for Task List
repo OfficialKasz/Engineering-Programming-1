@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <string.h>
+
+/* ******************************************************* */
+/*                                                         */
+/*   title: ICE_16.c                                       */
+/*   programmer: Lukasz Janik                              */
+/*   date: 11-08-2022                                      */
+/*                                                         */
+/*   purpose:                                              */
+/*   add banners to my bubble sort list                    */
+/*                                                         */
+/*   input:   assigned at declaration                      */
+/*   output:  printed to console                           */
+/*                                                         */
+/*   notes:  no checking of input is performed             */
+/*                                                         */
+/* ******************************************************* */
+
+
+int main()
+{
+	/* variables */
+    int i, j, subs, tick;
+	
+	/* Task List */
+	char task[12][50] = {"Corroded uncoiler wiring - Repair        ", 
+                        "Grease all roller bearings               ", 
+                        "Overhead crane cracked glass - Replace   ", 
+                        "Replace main motor contacts              ", 
+                        "Relay room sprinkler inoperative - Repair", 
+                        "Toilet stall door broken - Replace       ", 
+                        "Replace burnt indicator lamps            ", 
+                        "Vending machine light bulb out - Replace ", 
+                        "Backup roll drive shaft cracked - Replace", 
+                        "Work roll change                         ", 
+                        "Backup roll change                       ", 
+                        "Strip width sensor damaged - Replace     "};	
+						
+						
+	/* Data List */
+    int data[12] = { 69, 99, 38, 85, 91, 13, 95, 25, 88, 98, 97, 78};
+	
+	char temps_str[50];
+
+	/* Print Original List */
+	printf("***************************************************\n");
+	printf("***************************************************\n");
+	printf("**                                               **\n");
+	printf("**                 Original list:                **\n");
+	printf("**                                               **\n");
+    printf("***************************************************\n");
+	printf("***************************************************\n");
+    for (tick=0; tick<12; tick++) {
+        printf("\n task[%d]=%s ", tick, task[tick]);
+		printf("\t data[%d]=%d ", tick, data[tick]);
+	}		
+	/* Look at the first number */
+	for (i=0; i<12; i++) {
+		/* switches the two numbers if need to */
+		for (j=0; j<11; j++) {
+			if (data[j] < data[j+1]) {
+				subs=data[j];
+				data[j]=data[j+1];
+				data[j+1]=subs;
+			
+				/* Copy the Strings so that task also switches */
+				strcpy(temps_str, task[j]);
+				strcpy(task[j], task[j+1]);
+				strcpy(task[j+1], temps_str);
+			}
+		}
+	}
+	printf("\n");
+	printf("\n");
+	/* Print Sorted List */
+    printf("***************************************************\n");
+	printf("***************************************************\n");
+	printf("**                                               **\n");
+	printf("**                  Sorted List:                 **\n");
+	printf("**                                               **\n");
+    printf("***************************************************\n");
+	printf("***************************************************\n");
+    for (i=0; i<12; i++) {
+		printf("\n task[%d]=%s ", i, task[i]);
+		printf("\tdata[%d]=%d ", i, data[i]);
+	}		
+	
+    return 0;                             /* return 0      */
+	
+}
