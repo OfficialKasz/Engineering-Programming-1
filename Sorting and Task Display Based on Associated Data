@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <string.h>
+
+/* ******************************************************* */
+/*                                                         */
+/*   title: ICE_15.c                                       */
+/*   programmer: Lukasz Janik                              */
+/*   date: 11-07-2022                                      */
+/*                                                         */
+/*   purpose:                                              */
+/*   this programs prints system limits.                   */
+/*                                                         */
+/*   input:   assigned at declaration                      */
+/*   output:  printed to console                           */
+/*                                                         */
+/*   notes:  no checking of input is performed             */
+/*                                                         */
+/* ******************************************************* */
+
+
+int main()
+{
+	/* variables */
+    int i, j, subs, tick;
+	
+	/* Part A */
+	printf("Part 1: \n");
+	printf("\n");
+		int numb[]={69, 38, 91, 13, 25, 88, 78};
+		
+		/* Show Original List */
+		printf("Original List\n");
+		for (i=0; i<7; i=i+1){
+			printf("%d", numb[i]);
+		}
+		/* Sorts the List */
+		for (i=0; i<7; i++){
+			for (j=0; j<7; j++){
+				if (numb[j] > numb[j+1]) {
+					subs = numb[j];
+					numb[j] = numb[j+1];
+					numb[j+1] = subs;
+				}
+			}
+		}
+		/* Show Sorted List */
+		printf("\nSorted List\n");
+		for (i=0; i<7; i=i+1){
+			printf("%d", numb[i]);
+		}
+	
+	/* Part B */
+	printf("\nPart B: \n");
+	
+	/* Task List */
+	char task[12][50] = {"Corroded uncoiler wiring - Repair        ", 
+                        "Grease all roller bearings               ", 
+                        "Overhead crane cracked glass - Replace   ", 
+                        "Replace main motor contacts              ", 
+                        "Relay room sprinkler inoperative - Repair", 
+                        "Toilet stall door broken - Replace       ", 
+                        "Replace burnt indicator lamps            ", 
+                        "Vending machine light bulb out - Replace ", 
+                        "Backup roll drive shaft cracked - Replace", 
+                        "Work roll change                         ", 
+                        "Backup roll change                       ", 
+                        "Strip width sensor damaged - Replace     "};	
+						
+						
+	/* Data List */
+    int data[12] = { 69, 99, 38, 85, 91, 13, 95, 25, 88, 98, 97, 78};
+	
+	char temps_str[50];
+
+	/* Print Original List */
+    printf("\nOriginal list: ");
+    for (tick=0; tick<12; tick++) {
+        printf("\n task[%d]=%s ", tick, task[tick]);
+		printf("\t data[%d]=%d ", tick, data[tick]);
+	}		
+	/* Look at the first number */
+	for (i=0; i<12; i++) {
+		/* switches the two numbers if need to */
+		for (j=0; j<11; j++) {
+			if (data[j] < data[j+1]) {
+				subs=data[j];
+				data[j]=data[j+1];
+				data[j+1]=subs;
+			
+				/* Copy the Strings so that task also switches */
+				strcpy(temps_str, task[j]);
+				strcpy(task[j], task[j+1]);
+				strcpy(task[j+1], temps_str);
+			}
+		}
+	}
+
+	/* Print Sorted List */
+    printf("\nSorted list:   ");
+    for (i=0; i<12; i++) {
+		printf("\n task[%d]=%s ", i, task[i]);
+		printf("\tdata[%d]=%d ", i, data[i]);
+	}		
+	
+    return 0;                             /* return 0      */
+	
+}
