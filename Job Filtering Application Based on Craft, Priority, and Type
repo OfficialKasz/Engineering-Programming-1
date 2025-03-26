@@ -1,0 +1,94 @@
+/*
+Lukasz Janik
+ECE 251 Programming Project 06
+HC: I have neither given nor recieved, nor have I tolerated others' use of unauthorized aid
+*/
+#include <stdio.h>
+
+/* main pp06                                                        */ 
+int main () {
+	char craft_input[12], type_input[12];
+	int  priority_input;
+ /*		Header		*/
+ printf("------------------------------------------------\n");
+ printf("-- 	     Job Filtering Application 	       --\n");	
+ printf("------------------------------------------------\n");
+ printf("--   Please Enter the Requested Information   --\n");
+ printf("------------------------------------------------\n");
+ 
+ /*		Asks the user for Craft, Priority, and Type		*/
+	printf("\n Please Enter a Craft: ");
+	fflush( stdout );
+	scanf("%s", &craft_input);
+	printf("\n Please Enter a Minumun Priority: ");
+	fflush( stdout );
+	scanf("%s", &priority_input);
+	printf("\n Please Enter a Job Type: ");
+	fflush( stdout );
+	scanf("%s", &type_input);
+	/*printf("\n Entered: ");
+	printf("%c %d %c ", craft_input[0], priority_input, type_input[0]);
+	printf("\n");*/
+  
+ /* initialize the multidimensional array */
+ /* note that line breaks are possible    */
+   char task[12][50] = {"Corroded uncoiler wiring - Repair        ", 
+                        "Grease all roller bearings               ", 
+                        "Overhead crane cracked glass - Replace   ", 
+                        "Replace main motor contacts              ", 
+                        "Relay room sprinkler inoperative - Repair", 
+                        "Toilet stall door broken - Replace       ", 
+                        "Replace burnt indicator lamps            ", 
+                        "Vending machine light bulb out - Replace ", 
+                        "Backup roll drive shaft cracked - Replace", 
+                        "Work roll change                         ", 
+                        "Backup roll change                       ", 
+                        "Strip width sensor damaged - Replace     "};
+
+   char craft[12][50] = {"Electrician", 
+                         "Mechanic   ",
+                         "Mechanic   ",
+                         "Electrician",
+                         "Mechanic   ",
+                         "Mechanic   ",
+                         "Electrician",
+                         "Electrician",
+                         "Mechanic   ",
+                         "Mechanic   ",
+                         "Mechanic   ",
+                         "Electrician"};
+
+   char jobtype[12][50] = {"RP", 
+                           "PM",
+                           "RP",
+                           "PM",
+                           "RP",
+                           "RP",
+                           "PM",
+                           "RP",
+                           "RP",
+                           "PM",
+                           "PM",
+                           "RP"};
+
+   int priority[12] = { 69, 99, 38, 85, 91, 13, 95, 25, 88, 98, 97, 78};
+
+   int i;
+
+   /*printf("\nOriginal Task List");           /* data header          */
+   /*for(count=0; count<12; count++) {         /* display input array  */
+   /*      printf("\ntask[%d]=%s ", count, task[count]); 
+		 printf("\tcraft[%d]=%s ", count, craft[count]); 
+		 printf("\tpriority[%d]=%d", count, priority[count]);
+		 printf("\ttype[%d]=%s", count, jobtype[count]); */
+   for (i=0; i<12; i++) {
+		if (craft_input[0] == craft[i][0] && priority_input >= priority[i] && type_input[0] == jobtype[i][0]){
+		 printf("\ntask[%d]=%s ", i, task[i]); 
+		 printf("\tcraft[%d]=%s ", i, craft[i]); 
+		 printf("\tpriority[%d]=%d", i, priority[i]);
+		 printf("\ttype[%d]=%s", i, jobtype[i]); 
+		}
+   }
+
+   return 0;
+}
