@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <windows.h>
+
+/* Lukasz Janik */
+/* ICE #14 */
+
+int main(){
+	int length, delay;
+	int i;
+	printf("\n Please Enter a Progress Bar Length: ");
+	fflush( stdout );
+	scanf("%d", &length);
+	printf("\n Please Enter a Delay(in ms): ");
+	fflush( stdout );
+	scanf("%d", &delay);
+
+	
+	for (i=0; i<length; i++) {
+	 printf("*");
+	 Sleep(delay);
+	}
+	/*printf("\nHi\n");
+	sleep(1000);
+	printf("\nBye\n");*/
+	
+	return 0;
+}
